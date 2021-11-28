@@ -1,6 +1,8 @@
 package floodFill;
  /*
- * @author FilPag 
+ * @author Filip Pagliaro 
+ * AUTHORS NOTE:
+  Much of this file was auto-generated using NetBeans
  */
 public class Window extends javax.swing.JFrame {
 

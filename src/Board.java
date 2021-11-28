@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package floodFill;
 
 import java.awt.Color;
@@ -10,32 +5,33 @@ import java.awt.Graphics;
 
 /**
  *
- * @author FilPag 
+ * @author Filip Pagliaro
  */
 public class Board {
 
+    private static final int CellSize = 23;
+
     public int boardSize = 20;
-    static final int CellSize = 23;
-    Color Purple = new Color(167, 0, 202);
-    Color[][] color = new Color[24][24];
-    int Margin = 120;
     public int maxMoves = 45;
     public int moves = 0;
+    public Color[][] colors = new Color[24][24];
+
+    private int Margin = 120;
 
     public void draw(Graphics g) {
 
         g.setColor(Color.BLACK);
-        g.fillRect(Margin - 10, Margin, 10, (CellSize * boardSize));
-        g.fillRect(Margin - 10, Margin - 10, (CellSize * boardSize) + 10, 10);
-        g.fillRect(Margin + (CellSize * boardSize), Margin - 10, 10,
-                (CellSize * boardSize) + 10);
-        g.fillRect(Margin - 10, Margin + (CellSize * boardSize),
-                (CellSize * boardSize) + 20, 10);
+        g.fillRect(this.Margin - 10, this.Margin, 10, (this.CellSize * this.boardSize));
+        g.fillRect(this.Margin - 10, this.Margin - 10, (this.CellSize * this.boardSize) + 10, 10);
+        g.fillRect(this.Margin + (this.CellSize * this.boardSize), this.Margin - 10, 10,
+                (this.CellSize * this.boardSize) + 10);
+        g.fillRect(this.Margin - 10, this.Margin + (this.CellSize * this.boardSize),
+                (this.CellSize * this.boardSize) + 20, 10);
 
-        for (int rad = 0; rad < boardSize; rad++) {
-            for (int kollumn = 0; kollumn < boardSize; kollumn++) {
-                g.setColor(color[rad][kollumn]);
-                g.fillRect(Margin + (23 * kollumn), Margin + (23 * rad), 23, 23);
+        for (int row = 0; row < this.boardSize; row++) {
+            for (int col = 0; col< this.boardSize; col++) {
+                g.setColor(colors[row][col]);
+                g.fillRect(this.Margin + (23 * col), this.Margin + (23 * row), 23, 23);
             }
         }
     }
@@ -44,23 +40,23 @@ public class Board {
         if (targetC.equals(replaceC)) {
             return;
         }
-        if (!this.color[Y][X].equals(targetC)) {
+        if (!this.colors[Y][X].equals(targetC)) {
             return;
         }
-        this.color[Y][X] = replaceC;
-        //Väst
+        this.colors[Y][X] = replaceC;
+        //West
         if (X > 0) {
             floodFill(X - 1, Y, replaceC, targetC);
         }
-        //Öst
+        //East
         if (X < 19) {
             floodFill(X + 1, Y, replaceC, targetC);
         }
-        //Syd
+        //South
         if (Y < 19) {
             floodFill(X, Y + 1, replaceC, targetC);
         }
-        //Norr
+        //North
         if (Y > 0) {
             floodFill(X, Y - 1, replaceC, targetC);
         }
@@ -68,23 +64,23 @@ public class Board {
     }
 
     public void generateColors() {
-        for (int i = 0; i < color.length; i++) {
-            for (int j = 0; j < color[0].length; j++) {
-                color[i][j] = randomColor((int) (Math.random() * 7) + 1);
+        for (int i = 0; i < colors.length; i++) {
+            for (int j = 0; j < this.colors[0].length; j++) {
+                this.colors[i][j] = randomColor((int) (Math.random() * 7) + 1);
             }
         }
     }
 
     public Color getColor(int mouseX, int mouseY) {
-        mouseX = (mouseX - Margin) / CellSize;
-        mouseY = (mouseY - Margin) / CellSize;
-        if (this.color[mouseY][mouseX] == this.color[0][0]) {
-            return this.color[0][0];
-        } else if (mouseX > boardSize || mouseY > boardSize) {
-            return this.color[0][0];
+        mouseX = (mouseX - Margin) / this.CellSize;
+        mouseY = (mouseY - Margin) / this.CellSize;
+        if (this.colors[mouseY][mouseX] == this.colors[0][0]) {
+            return this.colors[0][0];
+        } else if (mouseX > this.boardSize || mouseY > this.boardSize) {
+            return this.colors[0][0];
         } else {
             this.moves++;
-            return this.color[mouseY][mouseX];
+            return this.colors[mouseY][mouseX];
         }
     }
 
@@ -92,27 +88,27 @@ public class Board {
         switch (Size) {
             case 0:
                 this.boardSize = 12;
-                Margin = (700 - (CellSize * boardSize)) / 2;
-                maxMoves = 24;
+                this.Margin = (700 - (this.CellSize * this.boardSize)) / 2;
+                this.maxMoves = 24;
                 break;
             case 1:
                 this.boardSize = 16;
-                Margin = (700 - (CellSize * boardSize)) / 2;
-                maxMoves = 33;
+                this.Margin = (700 - (this.CellSize * this.boardSize)) / 2;
+                this.maxMoves = 33;
                 break;
             case 2:
                 this.boardSize = 20;
-                Margin = (700 - (CellSize * boardSize)) / 2;
-                maxMoves = 40;
+                this.Margin = (700 - (this.CellSize * this.boardSize)) / 2;
+                this.maxMoves = 40;
                 break;
             case 3:
                 this.boardSize = 24;
-                Margin = (700 - (CellSize * boardSize)) / 2;
-                maxMoves = 48;
+                this.Margin = (700 - (this.CellSize * this.boardSize)) / 2;
+                this.maxMoves = 48;
                 break;
             default:
                 this.boardSize = 20;
-                Margin = (700 - (CellSize * boardSize)) / 2;
+                this.Margin = (700 - (this.CellSize * this.boardSize)) / 2;
 
         }
     }
@@ -139,9 +135,9 @@ public class Board {
     }
 
     public boolean win() {
-        for (int i = 0; i < boardSize; i++) {
-            for (int j = 0; j < boardSize; j++) {
-                if (color[0][0] == color[i][j] && moves < maxMoves) {
+        for (int i = 0; i < this.boardSize; i++) {
+            for (int j = 0; j < this.boardSize; j++) {
+                if (this.colors[0][0] == this.colors[i][j] && moves < this.maxMoves) {
                 } else {
                     return false;
                 }

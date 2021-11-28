@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package floodFill;
 
 import java.awt.Graphics;
 
-
 /**
- *
- * @author FilPag 
+ * @author Filip Pagliaro 
+* AUTHORS NOTE:
+  Much of this file was auto-generated using NetBeans
  */
 public class floodFillJPanel extends javax.swing.JPanel {
 
@@ -122,12 +117,12 @@ public class floodFillJPanel extends javax.swing.JPanel {
                     .addComponent(lblMoves, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(634, Short.MAX_VALUE))
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         try {
             board.floodFill(0, 0, board.getColor(evt.getX(),
-                    evt.getY()), board.color[0][0]);
+                    evt.getY()), board.colors[0][0]);
             repaint();
         } catch (java.lang.ArrayIndexOutOfBoundsException error) {
         }
