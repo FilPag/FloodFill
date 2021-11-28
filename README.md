@@ -1,5 +1,5 @@
 # FloodFill
-  A Java implementation of the colour puzzle game [Flood-it!](https://unixpapa.com/floodit/)
+  A Java implementation of the color puzzle game [Flood-it!](https://unixpapa.com/floodit/)
 
   ![Game preview](/assets/preview.png)
 
@@ -7,3 +7,5 @@
   `make` - Complie classes <br>
   `make run` - Complie and run <br>
   `make clean` - Remove all classes <br>
+# Note
+Originally created 2017
